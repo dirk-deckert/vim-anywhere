@@ -38,8 +38,13 @@ done
 AW_PATH=$HOME/.vim-anywhere
 TMPFILE_DIR=/tmp/vim-anywhere
 TMPFILE=$TMPFILE_DIR/doc-$(date +"%y%m%d%H%M%S")
-VIM_OPTS=
-#--nofork
+
+if gvim --version 2>&1 | grep -qi 'neovide'; then
+    VIM_OPTS=
+else
+    VIM_OPTS=--nofork
+fi
+
 
 # Use ~/.gvimrc.min or ~/.vimrc.min if one exists
 VIMRC_PATH=($HOME/.gvimrc.min $HOME/.vimrc.min)
